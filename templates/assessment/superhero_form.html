@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block navbar_items %}
+    {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'legal:list' %}">List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'legal:add_superhero' %}">Create</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'legal:login' %}">Logout</a>
+        </li>
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'legal:login' %}">Register</a>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h1>Add a Superhero</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}

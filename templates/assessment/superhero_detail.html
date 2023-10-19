@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block navbar_items %}
+    {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'legal:list' %}">List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'legal:add_superhero' %}">Create</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'legal:login' %}">Logout</a>
+        </li>
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'legal:login' %}">Register</a>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr><th scope="col">Name</th><th scope="col">Alignment</th><th scope="col">Height</th><th scope="col">Weight</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ object.name }}</td>
+                <td>{{ object.alignment }}</td>
+                <td>{{ object.height }}</td>
+                <td>{{ object.weight }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
